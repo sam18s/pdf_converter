@@ -20,7 +20,7 @@ def text_to_pdf(text):
     pdf.set_font("Arial", size=12)
     for line in text.split('\n'):
         pdf.cell(200, 10, txt=line, ln=1)
-    return BytesIO(pdf.output(dest='S').encode('latin1'))
+    return BytesIO(pdf.output(dest='S'))
 
 
 
@@ -48,15 +48,14 @@ def images_to_pdf(files):
 
             pdf.image(temp_filename, x=0, y=0, w=width_mm, h=height_mm)
 
-    # Generate PDF bytes
-    pdf_bytes = BytesIO(pdf.output(dest='S').encode('latin1'))
+    pdf_bytes = BytesIO(pdf.output(dest='S'))
 
-    # Cleanup
     for tf in temp_files:
         if os.path.exists(tf):
             os.remove(tf)
 
     return pdf_bytes
+
 
 
 @app.route('/', methods=['GET', 'POST'])
