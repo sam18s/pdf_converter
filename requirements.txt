@@ -1,4 +1,4 @@
 Flask==2.3.2
-fpdf2==2.7.4
+fpdf2==2.7.8
 Pillow==10.4.0
 gunicorn==21.2.0
