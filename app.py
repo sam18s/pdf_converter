@@ -17,11 +17,15 @@ def allowed_file(filename):
 def text_to_pdf(text):
     pdf = FPDF()
     pdf.add_page()
-    pdf.set_font("Arial", size=12)
-    for line in text.split('\n'):
-        pdf.cell(200, 10, txt=line, ln=1)
-    return BytesIO(pdf.output(dest='S'))
+    
+    font_path = os.path.join('static', 'fonts', 'DejaVuSans.ttf')
+    pdf.add_font('DejaVu', '', font_path, uni=True)
+    pdf.set_font('DejaVu', size=12)
 
+    for line in text.split('\n'):
+        pdf.cell(0, 10, txt=line, ln=1)
+    
+    return BytesIO(pdf.output(dest='S'))
 
 
 def images_to_pdf(files):
